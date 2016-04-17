@@ -1,0 +1,60 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row">
+			 <div class="col-md-4">
+			 	<%= image_tag @skill.avatar.url(:medium) %>
+			 	<div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Title:</strong></td>
+                <td><%= @skill.title %></td>
+              </tr>
+              <tr>
+                <td><strong>Description:</strong></td>
+                <td><%= @skill.description %></td>
+              </tr>
+              
+              <tr>
+                <td><strong>Experience:</strong></td>
+                <td><%= @skill.experience %></td>
+              </tr>
+
+              <tr>
+                <td><strong>User:</strong></td>
+                <td><%= @skill.user.email %></td>
+              </tr>
+            </tbody>
+          </table>
+       </div>
+      </div>
+      <div class="col-md-7 col-md-offset-1">
+        <h1 class="review_title"><%= @skill.title %></h1>
+        <p><%= @skill.description %></p>
+        <%= link_to "Write Review", new_skill_review_path(@skill), class: "btn btn-danger" %>
+
+        <% if @reviews.blank? %>
+          <h3>No reviews just yet, please tell us about your experience.</h3>
+        <% else %>
+          <% @reviews.each do |review| %>
+            <div class="reviews">
+              <P><%= review.rating %></p>
+               
+              <p><%= review.comment %></p>
+              
+
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+<%= link_to 'Delete', skill_path(@skill), method: :delete, data: {confirm: "Are You Sure?"} %> |
+<%= link_to 'Edit', edit_skill_path(@skill) %> |
+<%= link_to 'Back', skills_path %> |
+</div>
+
+
